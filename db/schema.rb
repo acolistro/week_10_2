@@ -10,26 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200113161846) do
+ActiveRecord::Schema.define(version: 20200117214841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "albums", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "genre"
-  end
-
-  create_table "songs", force: :cascade do |t|
-    t.string "name"
-    t.string "lyrics"
-    t.integer "album_id"
+    t.float "cost"
+    t.string "country_of_origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "songs", "albums"
+  create_table "reviews", force: :cascade do |t|
+    t.string "author"
+    t.string "content_body"
+    t.integer "rating"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "reviews", "products"
 end
